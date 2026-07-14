@@ -732,7 +732,7 @@
             ارسال پیام
           </button>
 
-        </form>
+      </form>
 
         <p
           style="
@@ -805,9 +805,7 @@
 </footer>
 
 <script>
-
 /* Scroll Reveal */
-
 const sections = document.querySelectorAll("section");
 
 const observer = new IntersectionObserver(
@@ -816,26 +814,15 @@ const observer = new IntersectionObserver(
       if (entry.isIntersecting) {
         entry.target.animate(
           [
-            {
-              opacity:0,
-              transform:"translateY(40px)"
-            },
-            {
-              opacity:1,
-              transform:"translateY(0)"
-            }
+            { opacity:0, transform:"translateY(40px)" },
+            { opacity:1, transform:"translateY(0)" }
           ],
-          {
-            duration:700,
-            fill:"forwards"
-          }
+          { duration:700, fill:"forwards" }
         );
       }
     });
   },
-  {
-    threshold:.1
-  }
+  { threshold:.1 }
 );
 
 sections.forEach(section => {
@@ -843,13 +830,9 @@ sections.forEach(section => {
 });
 
 /* Top Button */
+const topBtn = document.getElementById("topBtn");
 
-const topBtn =
-  document.getElementById("topBtn");
-
-window.addEventListener(
-  "scroll",
-  () => {
+window.addEventListener("scroll", () => {
     if (window.scrollY > 600) {
       topBtn.style.display = "block";
     } else {
@@ -858,31 +841,20 @@ window.addEventListener(
   }
 );
 
-topBtn.addEventListener(
-  "click",
-  () => {
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
+topBtn.addEventListener("click", () => {
+    window.scrollTo({ top:0, behavior:"smooth" });
   }
 );
 
 /* Fake Form Submit */
+const form = document.querySelector("form");
 
-const form =
-  document.querySelector("form");
-
-form.addEventListener(
-  "submit",
-  e => {
+form.addEventListener("submit", e => {
     e.preventDefault();
-
-    alert(
-      "پیام شما ثبت شد. ممنون از اینکه با علیکاهی ارتباط گرفتید 🙌"
-    );
+    alert("پیام شما ثبت شد. ممنون از اینکه با علیکاهی ارتباط گرفتید 🙌");
   }
 );
+</script>
 
 <script src="script.js"></script>
 </body>
