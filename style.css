@@ -522,3 +522,9 @@ nav{
 }
 
 }
+@media (max-width: 768px) {
+    .menu.active {
+        right: 0;
+        box-shadow: -10px 0 30px rgba(0,0,0,.35);
+    }
+}
