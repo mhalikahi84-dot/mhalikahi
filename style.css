@@ -523,8 +523,14 @@ nav{
 
 }
 @media (max-width: 768px) {
+    .menu {
+        background: rgba(22, 27, 34, 0.75) !important;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    
     .menu.active {
         right: 0;
-        box-shadow: -10px 0 30px rgba(0,0,0,.35);
+        box-shadow: -10px 0 40px rgba(0,0,0,0.5);
     }
 }
