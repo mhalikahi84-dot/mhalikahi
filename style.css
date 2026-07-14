@@ -184,8 +184,8 @@ nav{
 .menu{
   display:flex;
   gap:30px;
+  align-items:center;
 }
-
 .menu a{
   color:var(--muted);
 }
@@ -469,30 +469,56 @@ nav{
 =========================== */
 
 .menu-toggle{
-
     display:none;
-
     background:none;
-
     border:none;
-
-    color:white;
-
+    color:#fff;
     font-size:2rem;
-
     cursor:pointer;
+    z-index:1001;
 }
 
 @media (max-width:768px){
 
-.menu{
-
-    display:none;
+.menu-toggle{
+    display:block;
 }
 
-.menu-toggle{
+.menu{
 
-    display:block;
+    position:fixed;
+
+    top:0;
+
+    right:-100%;
+
+    width:260px;
+
+    height:100vh;
+
+    background:#161b22;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:35px;
+
+    transition:.35s ease;
+
+    z-index:1000;
+}
+
+.menu.active{
+    right:0;
+}
+
+.menu a{
+    font-size:1.2rem;
 }
 
 }
