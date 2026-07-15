@@ -205,13 +205,19 @@ nav{
 }
 
 .hero-text h1{
-  font-size:4rem;
+    font-size:3.8rem;
+    font-weight:700;
+    line-height:1.15;
+    margin-bottom:8px;
 }
 
 .hero-text h2{
-  margin-top:20px;
-  color:#d1d5db;
-  font-weight:normal;
+    margin-top:0;
+    margin-bottom:28px;
+    color:var(--primary);
+    font-size:1.25rem;
+    font-weight:500;
+    letter-spacing:0.3px;
 }
 
 .hero-text p{
@@ -533,20 +539,4 @@ nav{
     gap:12px;
     flex-wrap:wrap;
     margin-top:30px;
-}
-
-.hero-tags span{
-    padding:10px 18px;
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:999px;
-    background:rgba(255,255,255,.04);
-    font-size:.95rem;
-    font-weight:500;
-    transition:.3s;
-}
-
-.hero-tags span:hover{
-    border-color:var(--primary);
-    color:var(--primary);
-    transform:translateY(-2px);
 }
