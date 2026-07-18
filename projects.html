@@ -19,20 +19,14 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
-  /* استایل اختصاصی برای باکس تجمیعی ایونت مارکتینگ */
-  .event-box {
-    background: #fff;
-    border: 1px solid #eef2f5;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+  /* استایل کمکی برای چیدمان داخلی باکس ایونت مارکتینگ */
+  .event-wrapper {
     margin-top: 40px;
     margin-bottom: 40px;
   }
-  .event-box h2 {
+  .event-main-title {
     font-size: 1.6rem;
     margin-bottom: 25px;
-    color: #333;
     border-bottom: 2px solid #0077b5;
     padding-bottom: 10px;
   }
@@ -46,12 +40,10 @@
   .event-title {
     font-size: 1.1rem;
     font-weight: 500;
-    color: #0077b5;
     margin-bottom: 8px;
   }
   .event-desc {
     font-size: 0.95rem;
-    color: #555;
     line-height: 1.6;
     margin-bottom: 12px;
   }
@@ -94,74 +86,83 @@
 
 <section>
   <div class="container">
-    <!-- استفاده از کلاس‌های اصلی خودت برای خراب نشدن استایل‌ها -->
-    <div class="projects-grid">
+    <!-- گرید اصلی پروژه‌ها -->
+    <div class="projects-grid"> <!--[cite: 3] -->
 
       <!-- PROJECT 1: ICY MONKEY -->
-      <div class="card project-card">
-        <img src="assets/images/project-icymonkey.png" alt="کمپین آیسی مانکی - مسابقه NexTalent" width="600" height="400" loading="lazy">
+      <div class="card project-card"> <!--[cite: 3] -->
+        <img src="assets/images/project-icymonkey.png" alt="کمپین آیسی مانکی - مسابقه NexTalent" width="600" height="400" loading="lazy"> <!--[cite: 3] -->
         <h3>NexTalent Competition (Icy Monkey)</h3>
         <p>تدوین استراتژی ورود به بازار (Market Entry)، تحلیل دقیق بازار و رقبا به همراه ایده‌پردازی لانچ کمپین که منجر به کسب رتبه اول در مسابقات کشوری NexTalent شد.</p>
-        <div class="card-links">
-          <a class="link-pill" href="https://prezi.com/view/LwOWd2huQos6VAFO3wWT/?referral_token=LwA3sMlnB3FN" target="_blank" rel="noopener">جزئیات بیشتر</a>
+        <div class="card-links"> <!--[cite: 3] -->
+          <a class="link-pill" href="https://www.linkedin.com/posts/mohammad-hosein-alikahi-8098322a8_ocean-blue-project-ugcPost-7333372573654712321-O1AR/?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEopZQkBG6yiccw3D3qbK-TUhSBXF97E6rY" target="_blank" rel="noopener">جزئیات بیشتر</a>
         </div>
       </div>
 
       <!-- PROJECT 2: MISSWAKE -->
-      <div class="card project-card">
-        <img src="assets/images/project-misswake.png" alt="کمپین دیجیتال مارکتینگ میسویک" width="600" height="400" loading="lazy">
+      <div class="card project-card"> <!--[cite: 3] -->
+        <img src="assets/images/project-misswake.png" alt="کمپین دیجیتال مارکتینگ میسویک" width="600" height="400" loading="lazy"> <!--[cite: 3] -->
         <h3>Digital Marketing Campaign (Misswake)</h3>
         <p>طراحی و اجرای کمپین‌های دیجیتال مارکتینگ، تحقیق کلمات کلیدی، تحلیل رقبا و خلق محتوای اختصاصی برای وب‌سایت و کانال‌های دیجیتال برند میسویک.</p>
-        <div class="card-links">
+        <div class="card-links"> <!--[cite: 3] -->
           <a class="link-pill" href="https://docs.google.com/document/d/1VOg0p2qBCbS48dCRSqfQ7VFT0MemwrF_mLmWAD4w3EQ/edit?usp=drivesdk" target="_blank" rel="noopener">جزئیات بیشتر</a>
         </div>
       </div>
 
     </div>
 
-    <!-- BOX: EVENT MARKETING EXPERIENCE -->
-    <div class="event-box">
-      <h2>Event Marketing Experience</h2>
-
-      <!-- EVENT 1 -->
-      <div class="event-row">
-        <div class="event-title">NextUp Marketing Managers Gathering</div>
-        <div class="event-desc">هماهنگی و اجرای رویداد بزرگ مدیران مارکتینگ NextUp شامل ارتباط با مهمانان، ارسال دعوت‌نامه‌ها و مدیریت لجستیک و فرآیندهای اجرایی رویداد.</div>
-        <div class="event-link-container">
-          <a class="link-pill" href="https://www.instagram.com/nexup_event/" target="_blank" rel="noopener">جزئیات بیشتر</a>
+    <!-- BOX: EVENT MARKETING EXPERIENCE (کاملا هماهنگ با کلاس‌های اصلی سایت شما) -->
+    <div class="event-wrapper">
+      <h2 class="event-main-title">Event Marketing Experience</h2>
+      
+      <div class="card project-card" style="padding: 30px;"> <!--[cite: 3] -->
+        
+        <!-- EVENT 1 -->
+        <div class="event-row">
+          <div class="event-title">NextUp Marketing Managers Gathering</div>
+          <div class="event-desc">هماهنگی و اجرای رویداد بزرگ مدیران مارکتینگ NextUp شامل ارتباط با مهمانان، ارسال دعوت‌نامه‌ها و مدیریت لجستیک و فرآیندهای اجرایی رویداد.</div>
+          <div class="event-link-container">
+            <a class="link-pill" href="https://www.instagram.com/nexup_event/" target="_blank" rel="noopener">جزئیات بیشتر</a>
+          </div>
         </div>
-      </div>
 
-      <!-- EVENT 2 -->
-      <div class="event-row">
-        <div class="event-title">Noghteh Social Event</div>
-        <div class="event-desc">مشارکت فعال در سازماندهی، برنامه‌ریزی و هندل کردن فرآیندهای اجرایی رویداد اجتماعی جامعه نقطه (Noghteh Community).</div>
-        <div class="event-link-container">
-          <!-- اگر برای نقطه هم لینکی مد نظرت هست بعدا می‌تونی جای # بذاری -->
-          <a class="link-pill" href="#" target="_blank" rel="noopener">جزئیات بیشتر</a>
+        <!-- EVENT 2 -->
+        <div class="event-row">
+          <div class="event-title">Noghteh Social Event</div>
+          <div class="event-desc">مشارکت فعال در سازماندهی، برنامه‌ریزی و هندل کردن فرآیندهای اجرایی رویداد اجتماعی جامعه نقطه (Noghteh Community).</div>
+          <div class="event-link-container">
+            <a class="link-pill" href="https://www.instagram.com/noghte.community/" target="_blank" rel="noopener">جزئیات بیشتر</a>
+          </div>
         </div>
-      </div>
 
-      <!-- EVENT 3 -->
-      <div class="event-row">
-        <div class="event-title">Oxygen School's Corporate Events</div>
-        <div class="event-desc">فعالیت به عنوان پروموتر و هماهنگ‌کننده رسمی رویدادهای سازمانی مدرسه اکسیژن، هدایت امور اداری و پشتیبانی از عملیات اجرایی رویدادها.</div>
-        <div class="event-link-container">
-          <a class="link-pill" href="https://www.instagram.com/o2school/?hl=fa" target="_blank" rel="noopener">جزئیات بیشتر</a>
+        <!-- EVENT 3 -->
+        <div class="event-row">
+          <div class="event-title">Oxygen School's Corporate Events</div>
+          <div class="event-desc">فعالیت به عنوان پروموتر و هماهنگ‌کننده رسمی رویدادهای سازمانی مدرسه اکسیژن، هدایت امور اداری و پشتیبانی از عملیات اجرایی رویدادها.</div>
+          <div class="event-link-container">
+            <a class="link-pill" href="https://www.instagram.com/o2school/?hl=fa" target="_blank" rel="noopener">جزئیات بیشتر</a>
+          </div>
         </div>
-      </div>
 
-      <!-- EVENT 4 -->
-      <div class="event-row">
-        <div class="event-title">Asar Event & Resonance Imagination Concert</div>
-        <div class="event-desc">جذب اسپانسر مالی و معنوی، مدیریت عملیات رویداد و کنسرت تفکر رزونانس (لینک اول)؛ همچنین نمایندگی برند زاگرس (Zago) به عنوان اسپانسر کترینگ در رویداد اثر (لینک دوم).</div>
-        <div class="event-link-container">
-          <!-- لینک اول رو برای پست رزونانس و لینک دوم رو برای کلاب اثر گذاشتم -->
-          <a class="link-pill" href="https://www.instagram.com/p/DIs33zOItnG/" target="_blank" rel="noopener" style="margin-left: 5px;">رزونانس خیال</a>
-          <a class="link-pill" href="https://www.instagram.com/acarclubiran/" target="_blank" rel="noopener">رویداد اثر</a>
+        <!-- EVENT 4 -->
+        <div class="event-row">
+          <div class="event-title">Resonance Imagination Concert</div>
+          <div class="event-desc">پشتیبانی از عملیات اجرایی رویداد و جذب اسپانسرهای مالی و معنوی برای برگزاری کنسرت تفکر رزونانس.</div>
+          <div class="event-link-container">
+            <a class="link-pill" href="https://www.instagram.com/p/DIs33zOItnG/" target="_blank" rel="noopener">جزئیات بیشتر</a>
+          </div>
         </div>
-      </div>
 
+        <!-- EVENT 5 -->
+        <div class="event-row">
+          <div class="event-title">Asar Event</div>
+          <div class="event-desc">مشارکت در فرآیندهای اجرایی رویداد اثر، جذب اسپانسر و نمایندگی رسمی برند زاگرس (Zago) به عنوان اسپانسر کترینگ این رویداد.</div>
+          <div class="event-link-container">
+            <a class="link-pill" href="https://www.instagram.com/acarclubiran/" target="_blank" rel="noopener">جزئیات بیشتر</a>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>
