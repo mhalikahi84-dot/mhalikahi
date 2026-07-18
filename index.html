@@ -65,6 +65,26 @@
   </div>
 </header>
 
+<!-- کد جاوااسکریپت برای فعال‌سازی منوی همبرگری -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+
+    // وقتی روی گزینه‌ها کلیک شد، منو خودکار بسته بشه
+    const menuLinks = document.querySelectorAll('.menu a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('active');
+      });
+    });
+  });
+</script>
+
 <!-- HERO -->
 
 <section id="about">
