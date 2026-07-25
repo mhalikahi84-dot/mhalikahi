@@ -1,37 +1,71 @@
-// اطلاعات ربات تلگرام
+// اطلاعات ربات تلگرام محمدحسین
 const TELEGRAM_BOT_TOKEN = '8742095874:AAHJGHu7oDzIHUvBDknvPQ6gnJCsAHksxCs';
 const TELEGRAM_CHAT_ID = '5869433249';
 
-// لیست محصولات
+// لیست ۹ محصول فروشگاه با پسوند PNG
 const products = [
   {
     id: 1,
     name: 'محصول شماره یک',
-    image: 'assets/images/product1.jpg',
-    desc: 'یک محصول دکوری از جنس چوب راش، مناسب برای استفاده در فضای داخلی.'
+    image: 'assets/images/product1.png',
+    desc: 'توضیحات کوتاه محصول شماره یک. مناسب برای استفاده شخصی یا هدیه.'
   },
   {
     id: 2,
     name: 'محصول شماره دو',
-    image: 'assets/images/product2.jpg',
-    desc: 'بسته‌بندی اختصاصی از جنس مقوای بازیافتی، ایده‌آل برای هدیه‌های سازمانی.'
+    image: 'assets/images/product2.png',
+    desc: 'توضیحات کوتاه محصول شماره دو. طراحی مینیمال و کیفیت ساخت بالا.'
   },
   {
     id: 3,
     name: 'محصول شماره سه',
-    image: 'assets/images/product3.jpg',
-    desc: 'ماگ سرامیکی مات با طراحی مینیمال، قابل استفاده در منزل و محیط کار.'
+    image: 'assets/images/product3.png',
+    desc: 'توضیحات کوتاه محصول شماره سه. کاربردی و متناسب با نیاز روزمره.'
+  },
+  {
+    id: 4,
+    name: 'محصول شماره چهار',
+    image: 'assets/images/product4.png',
+    desc: 'توضیحات کوتاه محصول شماره چهار. ساخته شده از بهترین متریال.'
+  },
+  {
+    id: 5,
+    name: 'محصول شماره پنج',
+    image: 'assets/images/product5.png',
+    desc: 'توضیحات کوتاه محصول شماره پنج. ایده‌آل برای ست کردن با سایز وسایل.'
+  },
+  {
+    id: 6,
+    name: 'محصول شماره شش',
+    image: 'assets/images/product6.png',
+    desc: 'توضیحات کوتاه محصول شماره شش. دارای بسته‌بندی شیک و اختصاصی.'
+  },
+  {
+    id: 7,
+    name: 'محصول شماره هفت',
+    image: 'assets/images/product7.png',
+    desc: 'توضیحات کوتاه محصول شماره هفت. گزینه‌ای جذاب برای علاقه‌مندان.'
+  },
+  {
+    id: 8,
+    name: 'محصول شماره هشت',
+    image: 'assets/images/product8.png',
+    desc: 'توضیحات کوتاه محصول شماره هشت. با دوام بالا و طراحی منحصربه‌فرد.'
+  },
+  {
+    id: 9,
+    name: 'محصول شماره نه',
+    image: 'assets/images/product9.png',
+    desc: 'توضیحات کوتاه محصول شماره نه. گزینه‌ای مدرن برای تکمیل مجموعه.'
   }
 ];
 
 const cartIcon = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>`;
 
-// دریافت سبد از localStorage
 function getCart() {
   return JSON.parse(localStorage.getItem('userCart')) || [];
 }
 
-// ذخیره سبد در localStorage
 function saveCart(cart) {
   localStorage.setItem('userCart', JSON.stringify(cart));
 }
@@ -55,7 +89,6 @@ if (productsContainer) {
   });
 }
 
-// افزودن به سبد
 function addToCart(productId) {
   let cart = getCart();
   const existingIndex = cart.findIndex(item => item.id === productId);
@@ -73,7 +106,7 @@ function addToCart(productId) {
   alert('محصول به سبد خرید اضافه شد!');
 }
 
-// ۲. رندر سبد خرید در صفحه تسویه حساب (checkout.html)
+// ۲. رندر سبد خرید در checkout.html
 const checkoutSummary = document.getElementById('checkout-summary');
 
 function renderCheckoutCart() {
@@ -107,7 +140,6 @@ function renderCheckoutCart() {
   checkoutSummary.innerHTML = html;
 }
 
-// تغییر تعداد
 window.updateQty = function(productId, delta) {
   let cart = getCart();
   const item = cart.find(i => i.id === productId);
@@ -122,7 +154,6 @@ window.updateQty = function(productId, delta) {
   }
 };
 
-// حذف محصول
 window.removeItem = function(productId) {
   let cart = getCart();
   cart = cart.filter(i => i.id !== productId);
@@ -134,23 +165,23 @@ if (checkoutSummary) {
   renderCheckoutCart();
 }
 
-// ۳. ارسال پیام به تلگرام
+// ۳. تابع ارسال اطلاعات سفارش به ربات تلگرام
 async function sendToTelegram(customer, cart) {
   let itemsList = cart.map(item => `• ${item.name} - (تعداد: ${item.quantity})`).join('\n');
 
-  const message = `🛒 **سفارش جدید در سایت ثبت شد!**\n\n` +
-                  `👤 **نام خریدار:** ${customer.fullname}\n` +
-                  `📞 **شماره تماس:** ${customer.phone}\n` +
-                  `📧 **ایمیل:** ${customer.email}\n` +
-                  `📮 **کد پستی:** ${customer.postal}\n` +
-                  `📍 **آدرس:** ${customer.address}\n` +
-                  `📝 **توضیحات:** ${customer.notes || 'ندارد'}\n\n` +
-                  `📦 **اقلام سفارش:**\n${itemsList}`;
+  const message = `🛒 *سفارش جدید در سایت ثبت شد!*\n\n` +
+                  `👤 *نام خریدار:* ${customer.fullname}\n` +
+                  `📞 *شماره تماس:* ${customer.phone}\n` +
+                  `📧 *ایمیل:* ${customer.email}\n` +
+                  `📮 *کد پستی:* ${customer.postal}\n` +
+                  `📍 *آدرس:* ${customer.address}\n` +
+                  `📝 *توضیحات:* ${customer.notes || 'ندارد'}\n\n` +
+                  `📦 *اقلام سفارش:*\n${itemsList}`;
 
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
   try {
-    await fetch(url, {
+    const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -159,12 +190,19 @@ async function sendToTelegram(customer, cart) {
         parse_mode: 'Markdown'
       })
     });
+
+    const result = await response.json();
+
+    if (!result.ok) {
+      alert('خطا از سمت تلگرام: ' + result.description);
+    }
   } catch (error) {
-    console.error('ارسال پیام به تلگرام با خطا مواجه شد:', error);
+    alert('ارسال به تلگرام ناموفق بود. احتمالاً مرورگر امکان اتصال به تلگرام را ندارد (فیلترشکن را بررسی کنید).');
+    console.error(error);
   }
 }
 
-// ۴. مدیریت فرم تسویه حساب و ثبت final
+// ۴. مدیریت ثبت فرم تسویه حساب
 const checkoutForm = document.getElementById('checkout-form');
 const formError = document.getElementById('form-error');
 
@@ -196,14 +234,14 @@ if (checkoutForm) {
 
     const customer = { fullname, phone, email, postal, address, notes };
 
-    // ارسال به ربات تلگرام
+    // ارسال سفارش به تلگرام
     await sendToTelegram(customer, cart);
 
-    // ذخیره در مرورگر و پاک کردن سبد
+    // ذخیره‌سازی و پاک‌سازی سبد خرید
     localStorage.setItem('lastOrder', JSON.stringify({ cart, customer }));
     localStorage.removeItem('userCart');
 
-    // انتقال به صفحه موفقیت
+    // هدایت به صفحه موفقیت
     window.location.href = 'success.html';
   });
 }
