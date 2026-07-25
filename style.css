@@ -1033,3 +1033,15 @@ footer p{
   text-align: right;
   font-weight: 500;
 }
+/* استایل دکمه ادامه خرید در صفحه فروشگاه */
+.shop-action-wrapper {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.btn-large {
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
