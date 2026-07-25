@@ -1,3 +1,6 @@
+// آدرس فرم اختصاصی Formspree (https://formspree.io/f/mbdnpbjz)
+const FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
+
 // اطلاعات ربات تلگرام محمدحسین
 const TELEGRAM_BOT_TOKEN = '8742095874:AAHJGHu7oDzIHUvBDknvPQ6gnJCsAHksxCs';
 const TELEGRAM_CHAT_ID = '5869433249';
@@ -79,7 +82,7 @@ function saveCart(cart) {
   localStorage.setItem('userCart', JSON.stringify(cart));
 }
 
-// ۱. رندر محصولات در صفحه فروشگاه (products.html)
+// ۱. رندر محصولات
 const productsContainer = document.getElementById('products-container');
 if (productsContainer) {
   productsContainer.innerHTML = '';
@@ -178,7 +181,30 @@ if (checkoutSummary) {
   renderCheckoutCart();
 }
 
-// ۳. تابع ارسال اطلاعات سفارش به ربات تلگرام
+// ۳. تابع ارسال به ایمیل (بدون نیاز به فیلترشکن)
+async function sendToEmail(customer, cart) {
+  let itemsList = cart.map(item => `${item.name} (${item.price}) - تعداد: ${item.quantity}`).join(' | ');
+
+  try {
+    await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        fullname: customer.fullname,
+        phone: customer.phone,
+        email: customer.email,
+        postal: customer.postal,
+        address: customer.address,
+        notes: customer.notes || 'ندارد',
+        order_items: itemsList
+      })
+    });
+  } catch (err) {
+    console.error('Email send failed:', err);
+  }
+}
+
+// ۴. تابع ارسال به تلگرام
 async function sendToTelegram(customer, cart) {
   let itemsList = cart.map(item => `• ${item.name} (${item.price}) - (تعداد: ${item.quantity})`).join('\n');
 
@@ -194,7 +220,7 @@ async function sendToTelegram(customer, cart) {
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
   try {
-    const response = await fetch(url, {
+    await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -203,19 +229,12 @@ async function sendToTelegram(customer, cart) {
         parse_mode: 'Markdown'
       })
     });
-
-    const result = await response.json();
-
-    if (!result.ok) {
-      alert('خطا از سمت تلگرام: ' + result.description);
-    }
   } catch (error) {
-    alert('ارسال به تلگرام ناموفق بود. احتمالاً مرورگر امکان اتصال به تلگرام را ندارد (فیلترشکن را بررسی کنید).');
-    console.error(error);
+    console.error('Telegram send failed (probably VPN off):', error);
   }
 }
 
-// ۴. مدیریت ثبت فرم تسویه حساب
+// ۵. ثبت فرم تسویه حساب
 const checkoutForm = document.getElementById('checkout-form');
 const formError = document.getElementById('form-error');
 
@@ -247,14 +266,17 @@ if (checkoutForm) {
 
     const customer = { fullname, phone, email, postal, address, notes };
 
-    // ارسال سفارش به تلگرام
-    await sendToTelegram(customer, cart);
+    // ارسال همزمان به ایمیل و تلگرام
+    await Promise.allSettled([
+      sendToEmail(customer, cart),
+      sendToTelegram(customer, cart)
+    ]);
 
-    // ذخیره‌سازی و پاک‌سازی سبد خرید
+    // ذخیره و پاک‌سازی
     localStorage.setItem('lastOrder', JSON.stringify({ cart, customer }));
     localStorage.removeItem('userCart');
 
-    // هدایت به صفحه موفقیت
+    // رفتن به صفحه موفقیت بدون گیر دادن به فیلترشکن
     window.location.href = 'success.html';
   });
 }
