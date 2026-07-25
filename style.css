@@ -991,3 +991,48 @@ footer p{
   background-color: #111;
   color: #fff;
 }
+/* استایل دکمه‌های تعداد */
+.summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.quantity-controls button {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+.quantity-controls span {
+  font-size: 1rem;
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* استایل ارور فرم */
+.form-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  border: 1px solid #f5c6cb;
+  text-align: right;
+}
