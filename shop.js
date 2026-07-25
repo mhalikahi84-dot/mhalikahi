@@ -73,7 +73,7 @@ function saveCart(cart) {
   localStorage.setItem('userCart', JSON.stringify(cart));
 }
 
-// ۱. رندر محصولات در صفحه فروشگاه (products.html)
+// ۱. رندر محصولات در صفحه فروشگاه
 const productsContainer = document.getElementById('products-container');
 if (productsContainer) {
   productsContainer.innerHTML = '';
@@ -84,6 +84,9 @@ if (productsContainer) {
       <img src="${product.image}" alt="${product.name}" loading="lazy">
       <h3 class="product-title">${product.name}</h3>
       <p class="product-desc">${product.desc}</p>
+      <div class="product-price" style="font-weight: bold; color: var(--accent, #00ff88); margin: 10px 0; font-size: 1.1rem;">
+        ${product.price}
+      </div>
       <button class="btn btn-cart" onclick="addToCart(${product.id})">
         ${cartIcon} افزودن به سبد خرید
       </button>
