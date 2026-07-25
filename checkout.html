@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout | Mohammad Hossein Alikahi</title>
+<title>تسویه حساب | Mohammad Hossein Alikahi</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,42 +21,41 @@
 
 <section>
   <div class="container checkout-container">
-    <div class="card checkout-card">
-      <h2 class="section-title">خلاصه سفارش</h2>
+    <div class="checkout-card">
+      <h2 class="section-title" style="margin-bottom: 30px;">سبد خرید و تسویه حساب</h2>
       
-      <div id="checkout-summary" class="checkout-summary">
-        <!-- محصول و تعداد اینجا لود میشه -->
-      </div>
+      <!-- خلاصه تمام محصولات انتخابی -->
+      <div id="checkout-summary" class="checkout-summary"></div>
 
-      <!-- باکس نمایش ارور -->
+      <!-- پیام خطا -->
       <div id="form-error" class="form-error" style="display: none;"></div>
 
       <form id="checkout-form" class="checkout-form" novalidate>
         <div class="form-group">
-          <label>نام و نام خانوادگی *</label>
-          <input type="text" id="fullname" required>
+          <label>نام و نام خانوادگی <span class="required-star">*</span></label>
+          <input type="text" id="fullname" placeholder="مثال: محمدحسین علی‌کاهی">
         </div>
         <div class="form-group">
-          <label>شماره تماس *</label>
-          <input type="tel" id="phone" required>
+          <label>شماره تماس <span class="required-star">*</span></label>
+          <input type="tel" id="phone" placeholder="۰۹۱۲۰۰۰۰۰۰۰">
         </div>
         <div class="form-group">
-          <label>ایمیل *</label>
-          <input type="email" id="email" required>
+          <label>ایمیل <span class="required-star">*</span></label>
+          <input type="email" id="email" placeholder="name@domain.com">
         </div>
         <div class="form-group">
-          <label>کد پستی *</label>
-          <input type="text" id="postal" required>
+          <label>کد پستی <span class="required-star">*</span></label>
+          <input type="text" id="postal">
         </div>
         <div class="form-group">
-          <label>آدرس دقیق *</label>
-          <textarea id="address" rows="3" required></textarea>
+          <label>آدرس دقیق <span class="required-star">*</span></label>
+          <textarea id="address" rows="3"></textarea>
         </div>
         <div class="form-group">
-          <label>توضیحات (اختیاری)</label>
+          <label>توضیحات سفارش (اختیاری)</label>
           <textarea id="notes" rows="2"></textarea>
         </div>
-        <button type="submit" class="btn btn-success btn-large">ثبت نهایی سفارش</button>
+        <button type="submit" class="btn btn-success">ثبت نهایی سفارش</button>
       </form>
     </div>
   </div>
