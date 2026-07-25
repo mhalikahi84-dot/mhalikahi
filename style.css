@@ -1045,3 +1045,58 @@ footer p{
   max-width: 400px;
   margin: 0 auto;
 }
+/* =============================
+   Success Page Styles (Dark & Glass)
+============================= */
+.success-section {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-wrapper {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.success-card {
+  text-align: center;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.success-icon-badge {
+  width: 80px;
+  height: 80px;
+  background: rgba(40, 167, 69, 0.15);
+  border: 1px solid #28a745;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 0 0 30px rgba(40, 167, 69, 0.3);
+}
+
+.success-icon-badge svg {
+  width: 42px;
+  height: 42px;
+  stroke: #28a745;
+}
+
+.success-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.success-desc {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
