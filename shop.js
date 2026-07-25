@@ -1,3 +1,7 @@
+// اطلاعات ربات تلگرام
+const TELEGRAM_BOT_TOKEN = '8742095874:AAHJGHu7oDzIHUvBDknvPQ6gnJCsAHksxCs';
+const TELEGRAM_CHAT_ID = '5869433249';
+
 // لیست محصولات
 const products = [
   {
@@ -22,7 +26,7 @@ const products = [
 
 const cartIcon = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>`;
 
-// گرفت سبد از localStorage
+// دریافت سبد از localStorage
 function getCart() {
   return JSON.parse(localStorage.getItem('userCart')) || [];
 }
@@ -32,7 +36,7 @@ function saveCart(cart) {
   localStorage.setItem('userCart', JSON.stringify(cart));
 }
 
-// ۱. رندر محصولات در صفحه اصلی فروشگاه (products.html)
+// ۱. رندر محصولات در صفحه فروشگاه (products.html)
 const productsContainer = document.getElementById('products-container');
 if (productsContainer) {
   productsContainer.innerHTML = '';
@@ -51,7 +55,7 @@ if (productsContainer) {
   });
 }
 
-// افزودن محصول به سبد
+// افزودن به سبد
 function addToCart(productId) {
   let cart = getCart();
   const existingIndex = cart.findIndex(item => item.id === productId);
@@ -66,10 +70,10 @@ function addToCart(productId) {
   }
 
   saveCart(cart);
-  alert('محصول به سبد خرید اضافه شد! می‌توانی محصولات دیگر را اضافه کنی یا روی دکمه "ادامه جهت تسویه حساب" بزنی.');
+  alert('محصول به سبد خرید اضافه شد!');
 }
 
-// ۲. رندر سبد خرید و مدیریت تعداد تو صفحه تسویه حساب (checkout.html)
+// ۲. رندر سبد خرید در صفحه تسویه حساب (checkout.html)
 const checkoutSummary = document.getElementById('checkout-summary');
 
 function renderCheckoutCart() {
@@ -78,7 +82,7 @@ function renderCheckoutCart() {
   let cart = getCart();
 
   if (cart.length === 0) {
-    checkoutSummary.innerHTML = '<p style="color: var(--muted); text-align: center; padding: 20px 0;">سبد خرید شما خالی است. لطفا ابتدا از فروشگاه محصولی انتخاب کنید.</p>';
+    checkoutSummary.innerHTML = '<p style="color: var(--muted); text-align: center; padding: 20px 0;">سبد خرید شما خالی است.</p>';
     return;
   }
 
@@ -103,7 +107,7 @@ function renderCheckoutCart() {
   checkoutSummary.innerHTML = html;
 }
 
-// کم و زیاد کردن تعداد محصول در صفحه چک‌اوت
+// تغییر تعداد
 window.updateQty = function(productId, delta) {
   let cart = getCart();
   const item = cart.find(i => i.id === productId);
@@ -118,7 +122,7 @@ window.updateQty = function(productId, delta) {
   }
 };
 
-// حذف کامل محصول
+// حذف محصول
 window.removeItem = function(productId) {
   let cart = getCart();
   cart = cart.filter(i => i.id !== productId);
@@ -130,12 +134,42 @@ if (checkoutSummary) {
   renderCheckoutCart();
 }
 
-// ۳. اعتبارسنچی فرم تسویه حساب
+// ۳. ارسال پیام به تلگرام
+async function sendToTelegram(customer, cart) {
+  let itemsList = cart.map(item => `• ${item.name} - (تعداد: ${item.quantity})`).join('\n');
+
+  const message = `🛒 **سفارش جدید در سایت ثبت شد!**\n\n` +
+                  `👤 **نام خریدار:** ${customer.fullname}\n` +
+                  `📞 **شماره تماس:** ${customer.phone}\n` +
+                  `📧 **ایمیل:** ${customer.email}\n` +
+                  `📮 **کد پستی:** ${customer.postal}\n` +
+                  `📍 **آدرس:** ${customer.address}\n` +
+                  `📝 **توضیحات:** ${customer.notes || 'ندارد'}\n\n` +
+                  `📦 **اقلام سفارش:**\n${itemsList}`;
+
+  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+  try {
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: message,
+        parse_mode: 'Markdown'
+      })
+    });
+  } catch (error) {
+    console.error('ارسال پیام به تلگرام با خطا مواجه شد:', error);
+  }
+}
+
+// ۴. مدیریت فرم تسویه حساب و ثبت final
 const checkoutForm = document.getElementById('checkout-form');
 const formError = document.getElementById('form-error');
 
 if (checkoutForm) {
-  checkoutForm.addEventListener('submit', (e) => {
+  checkoutForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const cart = getCart();
@@ -150,6 +184,7 @@ if (checkoutForm) {
     const email = document.getElementById('email').value.trim();
     const postal = document.getElementById('postal').value.trim();
     const address = document.getElementById('address').value.trim();
+    const notes = document.getElementById('notes').value.trim();
 
     if (!fullname || !phone || !email || !postal || !address) {
       formError.style.display = 'block';
@@ -159,14 +194,16 @@ if (checkoutForm) {
 
     formError.style.display = 'none';
 
-    const orderData = {
-      cart,
-      customer: { fullname, phone, email, postal, address, notes: document.getElementById('notes').value.trim() }
-    };
+    const customer = { fullname, phone, email, postal, address, notes };
 
-    localStorage.setItem('lastOrder', JSON.stringify(orderData));
-    localStorage.removeItem('userCart'); // پاک‌سازی سبد پس از ثبت موفق
+    // ارسال به ربات تلگرام
+    await sendToTelegram(customer, cart);
 
+    // ذخیره در مرورگر و پاک کردن سبد
+    localStorage.setItem('lastOrder', JSON.stringify({ cart, customer }));
+    localStorage.removeItem('userCart');
+
+    // انتقال به صفحه موفقیت
     window.location.href = 'success.html';
   });
 }
