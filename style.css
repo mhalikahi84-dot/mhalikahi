@@ -797,7 +797,7 @@ footer p{
   }
 }
 /* =============================
-   Shop & Products Styles
+   Shop & Products Styles (Dark Theme Unified)
 ============================= */
 .products-grid {
   display: grid;
@@ -813,23 +813,23 @@ footer p{
 
 .product-card img {
   width: 100%;
-  height: 250px;
+  height: 220px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  border-radius: 16px;
+  margin-bottom: 1.2rem;
 }
 
 .product-title {
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 0.5rem;
-  color: #111;
+  color: var(--text);
 }
 
 .product-desc {
   font-size: 0.95rem;
-  color: #555;
-  line-height: 1.6;
+  color: var(--muted);
+  line-height: 1.7;
   margin-bottom: 1.5rem;
   flex-grow: 1;
 }
@@ -839,10 +839,11 @@ footer p{
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 12px 24px;
+  border-radius: 12px;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
@@ -850,56 +851,125 @@ footer p{
 }
 
 .btn-cart {
-  background-color: transparent;
-  border: 1px solid #111;
-  color: #111;
+  background: rgba(var(--primary-rgb), 0.12);
+  border: 1px solid var(--primary);
+  color: var(--primary);
   width: 100%;
 }
 
 .btn-cart:hover {
-  background-color: #111;
-  color: #fff;
+  background: var(--primary);
+  color: #0a1010;
+  box-shadow: 0 0 20px rgba(var(--primary-rgb), 0.4);
 }
 
 /* =============================
-   Checkout Page
+   Checkout Page Styles
 ============================= */
 .checkout-container {
-  max-width: 600px;
+  max-width: 680px;
   margin: 0 auto;
 }
 
 .checkout-card {
-  padding: 2rem;
+  background: rgba(30, 42, 42, 0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--primary);
+  border-radius: 24px;
+  padding: 30px;
 }
 
 .checkout-summary {
-  background: #f9f9f9;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 2rem;
+  background: rgba(10, 16, 16, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 25px;
 }
 
 .summary-item {
   display: flex;
   align-items: center;
   gap: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .summary-item img {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 12px;
+  border: 1px solid rgba(var(--primary-rgb), 0.3);
 }
 
-.summary-item h4 {
-  margin: 0;
+.summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+
+.summary-details h4 {
+  font-size: 1rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* دکمه‌های کم و زیاد کردن تعداد */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(var(--primary-rgb), 0.3);
+  padding: 4px 10px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.quantity-controls button {
+  background: transparent;
+  border: none;
   font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--primary);
+  line-height: 1;
 }
 
+.quantity-controls button:hover {
+  color: #fff;
+}
+
+.quantity-controls span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  min-width: 18px;
+  text-align: center;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-inline-start: auto;
+}
+
+/* فرم تسویه حساب */
 .checkout-form .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
   display: flex;
   flex-direction: column;
 }
@@ -907,132 +977,59 @@ footer p{
 .checkout-form label {
   font-size: 0.9rem;
   font-weight: 500;
-  margin-bottom: 0.5rem;
-  color: #333;
+  margin-bottom: 0.4rem;
+  color: var(--text);
+}
+
+.required-star {
+  color: #ff4d4d;
+  margin-inline-start: 4px;
 }
 
 .checkout-form input,
 .checkout-form textarea {
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-family: inherit;
-  font-size: 1rem;
-  background: #fff;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-family: "Peyda", sans-serif;
+  font-size: 0.95rem;
+  background: rgba(10, 16, 16, 0.5);
+  color: var(--text);
+  transition: 0.3s;
 }
 
 .checkout-form input:focus,
 .checkout-form textarea:focus {
   outline: none;
-  border-color: #111;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.2);
 }
 
 .btn-success {
-  background-color: #28a745;
-  color: white;
+  background: var(--primary);
+  color: #0a1010;
   width: 100%;
   padding: 14px;
-  font-weight: bold;
-  font-size: 1.1rem;
+  font-weight: 700;
+  font-size: 1rem;
   margin-top: 1rem;
+  border-radius: 12px;
 }
 
 .btn-success:hover {
-  background-color: #218838;
+  box-shadow: 0 0 25px rgba(var(--primary-rgb), 0.5);
+  transform: translateY(-2px);
 }
 
-/* =============================
-   Success Page
-============================= */
-.success-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: #f8f9fa;
-}
-
-.success-wrapper {
-  width: 100%;
-  max-width: 500px;
-  padding: 1rem;
-}
-
-.success-card {
-  text-align: center;
-  padding: 3rem 2rem;
-}
-
-.success-icon {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 1.5rem;
-}
-
-.success-card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #111;
-}
-
-.success-card p {
-  color: #555;
-  margin-bottom: 2rem;
-  line-height: 1.6;
-}
-
-.btn-outline {
-  background-color: transparent;
-  border: 1px solid #111;
-  color: #111;
-}
-
-.btn-outline:hover {
-  background-color: #111;
-  color: #fff;
-}
-/* استایل دکمه‌های تعداد */
-.summary-details {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 5px 10px;
-  border-radius: 6px;
-  width: fit-content;
-}
-
-.quantity-controls button {
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  color: #333;
-}
-
-.quantity-controls span {
-  font-size: 1rem;
-  font-weight: bold;
-  min-width: 20px;
-  text-align: center;
-}
-
-/* استایل ارور فرم */
+/* ارور فرم */
 .form-error {
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 12px;
-  border-radius: 6px;
+  background-color: rgba(255, 77, 77, 0.15);
+  color: #ff6b6b;
+  padding: 12px 16px;
+  border-radius: 12px;
   margin-bottom: 20px;
-  font-size: 0.95rem;
-  border: 1px solid #f5c6cb;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 77, 77, 0.3);
   text-align: right;
+  font-weight: 500;
 }
