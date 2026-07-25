@@ -2,7 +2,7 @@
 const TELEGRAM_BOT_TOKEN = '8742095874:AAHJGHu7oDzIHUvBDknvPQ6gnJCsAHksxCs';
 const TELEGRAM_CHAT_ID = '5869433249';
 
-// لیست ۹ محصول فروشگاه با پسوند PNG
+// لیست محصولات فروشگاه
 const products = [
   {
     id: 1,
@@ -24,42 +24,48 @@ const products = [
     image: 'assets/images/product3.png',
     desc: 'طراحی فلزی لوکس با آبکاری طلایی؛ پشتش QR Code اختصاصی رزومه یا لینکدینت حک میشه.',
     price: '۱۵۵,۰۰۰ تومان'
-  }
-];
+  },
+  {
     id: 4,
     name: 'محصول شماره چهار',
     image: 'assets/images/product4.png',
-    desc: 'توضیحات کوتاه محصول شماره چهار. ساخته شده از بهترین متریال.'
+    desc: 'توضیحات کوتاه محصول شماره چهار. ساخته شده از بهترین متریال.',
+    price: '۲۰۰,۰۰۰ تومان'
   },
   {
     id: 5,
     name: 'محصول شماره پنج',
     image: 'assets/images/product5.png',
-    desc: 'توضیحات کوتاه محصول شماره پنج. ایده‌آل برای ست کردن با سایز وسایل.'
+    desc: 'توضیحات کوتاه محصول شماره پنج. ایده‌آل برای ست کردن با سایز وسایل.',
+    price: '۲۵۰,۰۰۰ تومان'
   },
   {
     id: 6,
     name: 'محصول شماره شش',
     image: 'assets/images/product6.png',
-    desc: 'توضیحات کوتاه محصول شماره شش. دارای بسته‌بندی شیک و اختصاصی.'
+    desc: 'توضیحات کوتاه محصول شماره شش. دارای بسته‌بندی شیک و اختصاصی.',
+    price: '۱۸۰,۰۰۰ تومان'
   },
   {
     id: 7,
     name: 'محصول شماره هفت',
     image: 'assets/images/product7.png',
-    desc: 'توضیحات کوتاه محصول شماره هفت. گزینه‌ای جذاب برای علاقه‌مندان.'
+    desc: 'توضیحات کوتاه محصول شماره هفت. گزینه‌ای جذاب برای علاقه‌مندان.',
+    price: '۳۱۰,۰۰۰ تومان'
   },
   {
     id: 8,
     name: 'محصول شماره هشت',
     image: 'assets/images/product8.png',
-    desc: 'توضیحات کوتاه محصول شماره هشت. با دوام بالا و طراحی منحصربه‌فرد.'
+    desc: 'توضیحات کوتاه محصول شماره هشت. با دوام بالا و طراحی منحصربه‌فرد.',
+    price: '۲۷۰,۰۰۰ تومان'
   },
   {
     id: 9,
     name: 'محصول شماره نه',
     image: 'assets/images/product9.png',
-    desc: 'توضیحات کوتاه محصول شماره نه. گزینه‌ای مدرن برای تکمیل مجموعه.'
+    desc: 'توضیحات کوتاه محصول شماره نه. گزینه‌ای مدرن برای تکمیل مجموعه.',
+    price: '۳۹۰,۰۰۰ تومان'
   }
 ];
 
@@ -73,7 +79,7 @@ function saveCart(cart) {
   localStorage.setItem('userCart', JSON.stringify(cart));
 }
 
-// ۱. رندر محصولات در صفحه فروشگاه
+// ۱. رندر محصولات در صفحه فروشگاه (products.html)
 const productsContainer = document.getElementById('products-container');
 if (productsContainer) {
   productsContainer.innerHTML = '';
@@ -84,7 +90,7 @@ if (productsContainer) {
       <img src="${product.image}" alt="${product.name}" loading="lazy">
       <h3 class="product-title">${product.name}</h3>
       <p class="product-desc">${product.desc}</p>
-      <div class="product-price" style="font-weight: bold; color: var(--accent, #00ff88); margin: 10px 0; font-size: 1.1rem;">
+      <div class="product-price" style="font-weight: bold; color: #00ff88; margin: 12px 0; font-size: 1.1rem;">
         ${product.price}
       </div>
       <button class="btn btn-cart" onclick="addToCart(${product.id})">
@@ -132,6 +138,7 @@ function renderCheckoutCart() {
         <img src="${item.image}" alt="${item.name}">
         <div class="summary-details">
           <h4>${item.name}</h4>
+          <p style="color: #00ff88; font-size: 0.9rem; margin-top: 4px;">${item.price}</p>
           <div class="quantity-controls">
             <button type="button" onclick="updateQty(${item.id}, -1)">-</button>
             <span>${item.quantity}</span>
@@ -173,7 +180,7 @@ if (checkoutSummary) {
 
 // ۳. تابع ارسال اطلاعات سفارش به ربات تلگرام
 async function sendToTelegram(customer, cart) {
-  let itemsList = cart.map(item => `• ${item.name} - (تعداد: ${item.quantity})`).join('\n');
+  let itemsList = cart.map(item => `• ${item.name} (${item.price}) - (تعداد: ${item.quantity})`).join('\n');
 
   const message = `🛒 *سفارش جدید در سایت ثبت شد!*\n\n` +
                   `👤 *نام خریدار:* ${customer.fullname}\n` +
