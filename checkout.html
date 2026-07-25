@@ -25,10 +25,13 @@
       <h2 class="section-title">خلاصه سفارش</h2>
       
       <div id="checkout-summary" class="checkout-summary">
-        <!-- محصول انتخاب شده اینجا لود میشه -->
+        <!-- محصول و تعداد اینجا لود میشه -->
       </div>
 
-      <form id="checkout-form" class="checkout-form">
+      <!-- باکس نمایش ارور -->
+      <div id="form-error" class="form-error" style="display: none;"></div>
+
+      <form id="checkout-form" class="checkout-form" novalidate>
         <div class="form-group">
           <label>نام و نام خانوادگی *</label>
           <input type="text" id="fullname" required>
