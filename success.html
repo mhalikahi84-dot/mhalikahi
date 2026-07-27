@@ -6,16 +6,6 @@
 <title>ثبت موفق سفارش | Mohammad Hossein Alikahi</title>
 <link rel="stylesheet" href="style.css">
 </head>
-  <script>
-  const lastOrder = JSON.parse(localStorage.getItem('lastOrder'));
-  if (lastOrder && lastOrder.orderId) {
-    // فرض کنیم یک المان با آیدی order-id توی صفحه success.html داری
-    const orderElem = document.getElementById('order-id');
-    if(orderElem) {
-       orderElem.innerText = lastOrder.orderId;
-    }
-  }
-</script>
 <body class="success-page">
 
 <header style="width: 100%;">
@@ -42,9 +32,24 @@
       </div>
 
       <h2 class="success-title">سفارش با موفقیت ثبت شد</h2>
-      <p class="success-desc">اطلاعات شما ثبت شد و تیم ما در اسرع وقت با شما تماس خواهد گرفت.</p>
+      <p class="success-desc">اطلاعات شما ثبت شد و سفارش جهت پردازش برای ما ارسال گردید.</p>
 
-      <a href="index.html" class="btn btn-cart btn-large" style="margin-top: 20px;">
+      <!-- باکس نمایش کد پیگیری -->
+      <div style="background: rgba(255, 255, 255, 0.05); border: 2px dashed #00ff88; padding: 18px; border-radius: 12px; margin: 25px 0; text-align: center;">
+        <p style="margin: 0 0 8px 0; color: #a0aec0; font-size: 0.95rem;">شماره پیگیری سفارش شما:</p>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+          <span id="order-id" style="font-weight: bold; font-size: 1.4rem; letter-spacing: 2px; color: #00ff88;">در حال دریافت...</span>
+          <button onclick="copyOrderId()" style="background: #00ff88; color: #111; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: bold;">کپی</button>
+        </div>
+      </div>
+
+      <p style="font-size: 0.9rem; color: #cbd5e0; margin-bottom: 20px;">
+        برای سوال یا پیگیری سریع‌تر، کد بالا را به 
+        <a href="https://t.me/mhalikahi" target="_blank" style="color: #00ff88; font-weight: bold; text-decoration: underline;">پشتیبانی تلگرام</a> 
+        ارسال کنید.
+      </p>
+
+      <a href="index.html" class="btn btn-cart btn-large" style="margin-top: 10px;">
         بازگشت به صفحه اصلی
       </a>
     </div>
@@ -57,6 +62,28 @@
     <p>© 2026 All Rights Reserved.</p>
   </div>
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lastOrder = JSON.parse(localStorage.getItem('lastOrder'));
+    const orderElem = document.getElementById('order-id');
+    
+    if (lastOrder && lastOrder.orderId) {
+      orderElem.innerText = lastOrder.orderId;
+    } else {
+      orderElem.innerText = 'ثبت نشده';
+    }
+  });
+
+  function copyOrderId() {
+    const code = document.getElementById('order-id').innerText;
+    if (code && code !== 'در حال دریافت...' && code !== 'ثبت نشده') {
+      navigator.clipboard.writeText(code).then(() => {
+        alert('کد پیگیری کپی شد!');
+      });
+    }
+  }
+</script>
 
 </body>
 </html>
