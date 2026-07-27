@@ -1,4 +1,4 @@
-// آدرس فرم اختصاصی Formspree (https://formspree.io/f/mbdnpbjz)
+// آدرس فرم اختصاصی Formspree (در صورت نیاز آی‌دی خودت رو بزار)
 const FORMSPREE_URL = 'https://formspree.io/f/YOUR_FORMSPREE_ID';
 
 // اطلاعات ربات تلگرام محمدحسین
@@ -28,7 +28,6 @@ const products = [
     desc: 'طراحی فلزی لوکس با آبکاری طلایی؛ پشتش QR Code اختصاصی رزومه یا لینکدینت حک میشه.',
     price: '۱۵۵,۰۰۰ تومان'
   },
-[
   {
     id: 4,
     name: 'پین سینه Open To Work (طرح آویز نمدی)',
@@ -71,8 +70,16 @@ const products = [
     desc: 'بافت پارچه‌ای و گلدوزی‌شده برجسته، بافت گرم و متفاوتی به هودی، کوله و لباس میده.',
     price: '۲۵۰,۰۰۰ تومان'
   }
-]
+];
+
 const cartIcon = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>`;
+
+// ساخت کد پیگیری یکتا
+function generateOrderId() {
+  const timestamp = Date.now().toString().slice(-4);
+  const random = Math.floor(1000 + Math.random() * 9000);
+  return `MH-${timestamp}${random}`;
+}
 
 function getCart() {
   return JSON.parse(localStorage.getItem('userCart')) || [];
@@ -181,8 +188,8 @@ if (checkoutSummary) {
   renderCheckoutCart();
 }
 
-// ۳. تابع ارسال به ایمیل (بدون نیاز به فیلترشکن)
-async function sendToEmail(customer, cart) {
+// ۳. تابع ارسال به ایمیل
+async function sendToEmail(customer, cart, orderId) {
   let itemsList = cart.map(item => `${item.name} (${item.price}) - تعداد: ${item.quantity}`).join(' | ');
 
   try {
@@ -190,6 +197,7 @@ async function sendToEmail(customer, cart) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
+        order_id: orderId,
         fullname: customer.fullname,
         phone: customer.phone,
         email: customer.email,
@@ -204,11 +212,12 @@ async function sendToEmail(customer, cart) {
   }
 }
 
-// ۴. تابع ارسال به تلگرام
-async function sendToTelegram(customer, cart) {
+// ۴. تابع ارسال به تلگرام با کد پیگیری
+async function sendToTelegram(customer, cart, orderId) {
   let itemsList = cart.map(item => `• ${item.name} (${item.price}) - (تعداد: ${item.quantity})`).join('\n');
 
-  const message = `🛒 *سفارش جدید در سایت ثبت شد!*\n\n` +
+  const message = `🛒 *سفارش جدید در سایت ثبت شد!*\n` +
+                  `🔢 *کد پیگیری:* \`${orderId}\` \n\n` +
                   `👤 *نام خریدار:* ${customer.fullname}\n` +
                   `📞 *شماره تماس:* ${customer.phone}\n` +
                   `📧 *ایمیل:* ${customer.email}\n` +
@@ -230,7 +239,7 @@ async function sendToTelegram(customer, cart) {
       })
     });
   } catch (error) {
-    console.error('Telegram send failed (probably VPN off):', error);
+    console.error('Telegram send failed:', error);
   }
 }
 
@@ -264,19 +273,21 @@ if (checkoutForm) {
 
     formError.style.display = 'none';
 
+    // ساخت کد پیگیری یکتا
+    const orderId = generateOrderId();
     const customer = { fullname, phone, email, postal, address, notes };
 
-    // ارسال همزمان به ایمیل و تلگرام
+    // ارسال همزمان به ایمیل و تلگرام به همراه کد پیگیری
     await Promise.allSettled([
-      sendToEmail(customer, cart),
-      sendToTelegram(customer, cart)
+      sendToEmail(customer, cart, orderId),
+      sendToTelegram(customer, cart, orderId)
     ]);
 
-    // ذخیره و پاک‌سازی
-    localStorage.setItem('lastOrder', JSON.stringify({ cart, customer }));
+    // ذخیره سفارش به همراه کد پیگیری برای نمایش در success.html
+    localStorage.setItem('lastOrder', JSON.stringify({ orderId, cart, customer }));
     localStorage.removeItem('userCart');
 
-    // رفتن به صفحه موفقیت بدون گیر دادن به فیلترشکن
+    // انتقال به صفحه موفقیت
     window.location.href = 'success.html';
   });
 }
