@@ -28,50 +28,50 @@ const products = [
     desc: 'طراحی فلزی لوکس با آبکاری طلایی؛ پشتش QR Code اختصاصی رزومه یا لینکدینت حک میشه.',
     price: '۱۵۵,۰۰۰ تومان'
   },
+[
   {
     id: 4,
-    name: 'محصول شماره چهار',
-    image: 'assets/images/product4.png',
-    desc: 'توضیحات کوتاه محصول شماره چهار. ساخته شده از بهترین متریال.',
-    price: '۲۰۰,۰۰۰ تومان'
+    name: 'پین سینه Open To Work (طرح آویز نمدی)',
+    image: 'assets/images/product9.png',
+    desc: 'طرح دست‌ساز نمدی با بند سبزرنگ، استایل کاملاً متفاوت و جلب‌توجه‌کننده برای ایونت‌ها.',
+    price: '۲۴۰,۰۰۰ تومان'
   },
   {
     id: 5,
-    name: 'محصول شماره پنج',
-    image: 'assets/images/product5.png',
-    desc: 'توضیحات کوتاه محصول شماره پنج. ایده‌آل برای ست کردن با سایز وسایل.',
-    price: '۲۵۰,۰۰۰ تومان'
+    name: 'پین سینه Open To Work (طرح زیتونی تایپوگرافی)',
+    image: 'assets/images/product4.png',
+    desc: 'طراحی مینیمال و متنی با پس‌زمینه زیتونی و لبخند، ایده‌آل برای استایل‌های مدرن و شبکه‌سازی.',
+    price: '۲۸۰,۰۰۰ تومان'
   },
   {
     id: 6,
-    name: 'محصول شماره شش',
-    image: 'assets/images/product6.png',
-    desc: 'توضیحات کوتاه محصول شماره شش. دارای بسته‌بندی شیک و اختصاصی.',
-    price: '۱۸۰,۰۰۰ تومان'
+    name: 'پین سینه Open To Work (طرح گرد لبخند)',
+    image: 'assets/images/product5.png',
+    desc: 'پین لعابی سبزرنگ با لوگوی هشتگ و لبخند، حس مثبت و پرانرژی برای ارتباطات حرفه‌ای.',
+    price: '۲۹۰,۰۰۰ تومان'
   },
   {
     id: 7,
-    name: 'محصول شماره هفت',
-    image: 'assets/images/product7.png',
-    desc: 'توضیحات کوتاه محصول شماره هفت. گزینه‌ای جذاب برای علاقه‌مندان.',
-    price: '۳۱۰,۰۰۰ تومان'
+    name: 'پین آویز Open To Work (طرح مستطیلی باریک)',
+    image: 'assets/images/product6.png',
+    desc: 'طراحی آویزدار و خاص فلزی با فونت عمودی، مناسب نصب روی کت، کیف و استایل‌های رسمی.',
+    price: '۳۲۰,۰۰۰ تومان'
   },
   {
     id: 8,
-    name: 'محصول شماره هشت',
-    image: 'assets/images/product8.png',
-    desc: 'توضیحات کوتاه محصول شماره هشت. با دوام بالا و طراحی منحصربه‌فرد.',
-    price: '۲۷۰,۰۰۰ تومان'
+    name: 'پین آویز Open To Work (طرح کپسولی)',
+    image: 'assets/images/product7.png',
+    desc: 'مدل آویز دار با فرم کپسولی و جلا داده‌شده، جذاب و چشم‌گیر برای رویدادهای کاری.',
+    price: '۳۱۰,۰۰۰ تومان'
   },
   {
     id: 9,
-    name: 'محصول شماره نه',
-    image: 'assets/images/product9.png',
-    desc: 'توضیحات کوتاه محصول شماره نه. گزینه‌ای مدرن برای تکمیل مجموعه.',
-    price: '۳۹۰,۰۰۰ تومان'
+    name: 'پیکسل گلدوزی Open To Work (طرح هلال نمدی)',
+    image: 'assets/images/product8.png',
+    desc: 'بافت پارچه‌ای و گلدوزی‌شده برجسته، بافت گرم و متفاوتی به هودی، کوله و لباس میده.',
+    price: '۲۵۰,۰۰۰ تومان'
   }
-];
-
+]
 const cartIcon = `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>`;
 
 function getCart() {
