@@ -273,21 +273,21 @@ if (checkoutForm) {
 
     formError.style.display = 'none';
 
-    // ساخت کد پیگیری یکتا
+    // ۱. ساخت کد پیگیری
     const orderId = generateOrderId();
     const customer = { fullname, phone, email, postal, address, notes };
 
-    // ارسال همزمان به ایمیل و تلگرام به همراه کد پیگیری
-    await Promise.allSettled([
+    // ۲. ذخیره فوری در مرورگر (بدون معطل شدن برای اینترنت)
+    localStorage.setItem('lastOrder', JSON.stringify({ orderId, cart, customer }));
+    localStorage.removeItem('userCart');
+
+    // ۳. ارسال درخواست‌ها به ایمیل و تلگرام در پس‌زمینه
+    Promise.allSettled([
       sendToEmail(customer, cart, orderId),
       sendToTelegram(customer, cart, orderId)
     ]);
 
-    // ذخیره سفارش به همراه کد پیگیری برای نمایش در success.html
-    localStorage.setItem('lastOrder', JSON.stringify({ orderId, cart, customer }));
-    localStorage.removeItem('userCart');
-
-    // انتقال به صفحه موفقیت
+    // ۴. انتقال آنی به صفحه موفقیت
     window.location.href = 'success.html';
   });
 }
