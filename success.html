@@ -6,6 +6,16 @@
 <title>ثبت موفق سفارش | Mohammad Hossein Alikahi</title>
 <link rel="stylesheet" href="style.css">
 </head>
+  <script>
+  const lastOrder = JSON.parse(localStorage.getItem('lastOrder'));
+  if (lastOrder && lastOrder.orderId) {
+    // فرض کنیم یک المان با آیدی order-id توی صفحه success.html داری
+    const orderElem = document.getElementById('order-id');
+    if(orderElem) {
+       orderElem.innerText = lastOrder.orderId;
+    }
+  }
+</script>
 <body class="success-page">
 
 <header style="width: 100%;">
