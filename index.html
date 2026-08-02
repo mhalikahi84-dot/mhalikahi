@@ -44,26 +44,24 @@
 <body>
 
 <header>
-  <div class="container">
-    <nav>
-
-      <a class="logo" href="#about">MHA</a>
-
-      <button class="menu-toggle" aria-label="باز کردن منو">☰</button>
-
-      <div class="menu">
-        <a href="#about">خانه</a>
-        <a href="products.html">فروشگاه</a>
-        <a href="#experience">تجربه ها</a>
-        <a href="#skills">مهارت ها</a>
-        <a href="#tools">ابزار ها</a>
-        <a href="projects.html">پروژه ها</a>
-        <a href="certificates.html">مدارک</a>
-        <a href="#contact">راه های ارتباطی</a>
-      </div>
-
-    </nav>
-  </div>
+    <div class="container nav-container">
+        <a href="index.html" class="logo">
+            MHA <span>// Brand & Event</span>
+        </a>
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html" class="active">صفحه اصلی</a>
+            <a href="projects.html">کیس‌استدی‌ها و رویدادها</a>
+            <a href="products.html">فروشگاه تجهیزات</a>
+            <a href="#experience">سوابق اجرایی</a>
+            <a href="#skills">متدولوژی</a>
+            <a href="#contact" class="btn btn-primary nav-cta">درخواست مشاوره</a>
+        </nav>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
 </header>
 
 <!-- کد جاوااسکریپت برای فعال‌سازی منوی همبرگری -->
@@ -88,41 +86,44 @@
 
 <!-- HERO -->
 
-<section id="about">
-  <div class="container">
-
-    <div class="hero">
-
-      <div class="hero-text">
-
-        <div class="hero-heading">
-          <h1>محمدحسین علیکاهی</h1>
-          <span class="hero-badge">Event &amp; Brand Marketing Specialist</span>
+<section id="hero" class="container">
+    <div class="hero-grid">
+        <div class="hero-text">
+            <span class="badge">Senior Brand & Event Specialist</span>
+            <h1>طراح و مجری تجربه‌های ماندگار برند و رویداد</h1>
+            <p>برندها با اسلاید ساخته نمی‌شوند؛ با آدم‌ها، تجربه‌ها و اجرای درست شکل می‌گیرند. من ایده، شبکه ارتباطی و عملیات اجرایی را بنچمارک می‌کنم تا کمپین‌ها و رویدادها اثر واقعی ایجاد کنند. تخصص من هدایت پروژه از نقطه صفرِ ایده‌پردازی تا کف زمین و مدیریت بحران اجراست.</p>
+            <div class="cta-buttons">
+                <a href="projects.html" class="btn btn-primary">بررسی کیس‌استدی‌ها</a>
+                <a href="#contact" class="btn btn-outline">رزرو وقت مشاوره</a>
+            </div>
         </div>
-
-        <div class="hero-intro">
-          <p>
-            مسیر حرفه‌ای خودم را از ارتباط مستقیم با مشتری و فروش آغاز کردم و در ادامه، با تجربه در مدیریت ارتباط با مشتری، اجرای رویدادها و کمپین‌های بازاریابی، به دنیای <strong>Brand Marketing</strong> و <strong>Event Marketing</strong> علاقه‌مند شدم.
-          </p>
-
-          <p>
-            امروز تمرکزم روی طراحی تجربه‌های ماندگار برای مخاطب، اجرای رویدادها و ساخت کمپین‌هایی است که فراتر از دیده شدن، اثر واقعی روی برندها ایجاد کنند.
-          </p>
+        <div class="hero-img">
+            <div class="img-wrapper">
+                <img src="assets/images/profile.webp" alt="محمدحسین علیکاهی" width="320" height="320" loading="eager">
+            </div>
         </div>
-
-      </div>
-
-      <div class="hero-image">
-        <div class="portrait">
-          <img src="profile.webp" alt="محمدحسین علیکاهی" width="340" height="340" loading="eager">
-        </div>
-      </div>
-
     </div>
-
-  </div>
 </section>
-
+<section id="metrics" class="container">
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-number">+۲۵٪</div>
+            <div class="metric-label">رشد فروش بالاتر از تارگت در پروژه دوشه آمل</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-number">+۲۰,۰۰۰</div>
+            <div class="metric-label">مخاطب درگیر شده در رویدادها و کمپین‌ها</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-number">+۱۵۰</div>
+            <div class="metric-label">تعامل روزانه و مدیریت ارتباطات مشتریان</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-number">۱۰۰٪</div>
+            <div class="metric-label">تعهد به اجرای کامل پروژه‌های برند و رویداد</div>
+        </div>
+    </div>
+</section>
 <!-- SELECTED COLLABORATIONS -->
 
 <section id="collaborations">
